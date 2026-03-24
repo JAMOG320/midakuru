@@ -22,11 +22,11 @@
   <!-- Styles -->
   <link rel="stylesheet" href="css/style.css">
 
-  <!-- JSON-LD -->
+  <!-- JSON-LD: LocalBusiness -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "ReligiousOrganization",
+    "@type": ["LocalBusiness", "ReligiousOrganization"],
     "name": "ミダクル（MIDAKURU）",
     "description": "北九州市の浄土真宗本願寺派寺院が直接運営する僧侶手配サービス",
     "url": "https://midakuru.jp",
@@ -39,11 +39,148 @@
       "postalCode": "802-0841",
       "addressCountry": "JP"
     },
+    "openingHours": "Mo-Su 06:00-23:00",
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+      "opens": "06:00",
+      "closes": "23:00"
+    },
     "parentOrganization": {
       "@type": "BuddhistTemple",
       "name": "光應山 永万寺"
     },
-    "areaServed": ["北九州市", "中間市", "直方市", "宗像市", "福津市", "京都郡"]
+    "areaServed": [
+      {"@type": "City", "name": "北九州市"},
+      {"@type": "City", "name": "中間市"},
+      {"@type": "City", "name": "直方市"},
+      {"@type": "City", "name": "宗像市"},
+      {"@type": "City", "name": "福津市"},
+      {"@type": "AdministrativeArea", "name": "京都郡"}
+    ]
+  }
+  </script>
+
+  <!-- JSON-LD: Service -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "僧侶手配・お坊さん派遣",
+    "provider": {
+      "@type": "ReligiousOrganization",
+      "name": "ミダクル（MIDAKURU）"
+    },
+    "areaServed": "北九州市",
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "葬儀プラン",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "name": "一日葬（僧侶1名）",
+          "description": "還骨初七日・火葬場随行込み。法名込み。",
+          "price": "80000",
+          "priceCurrency": "JPY"
+        },
+        {
+          "@type": "Offer",
+          "name": "通夜あり葬儀（僧侶1名）",
+          "description": "還骨初七日・火葬場随行込み。法名込み。",
+          "price": "140000",
+          "priceCurrency": "JPY"
+        },
+        {
+          "@type": "Offer",
+          "name": "通夜あり葬儀（住職+僧侶2名）",
+          "description": "還骨初七日・火葬場随行込み。法名込み。3名体制。",
+          "price": "145000",
+          "priceCurrency": "JPY"
+        }
+      ]
+    }
+  }
+  </script>
+
+  <!-- JSON-LD: FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "菩提寺がありませんが依頼できますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "はい、菩提寺がない方こそミダクルをご利用ください。宗旨宗派を問わず、どなたでもご依頼いただけます。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "門徒にならないと依頼できませんか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "いいえ、門徒でなくても一般価格でご依頼いただけます。門徒登録は任意です。強制は一切ありません。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "門徒になると檀家の義務がありますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "ありません。寄付やお手伝いの義務は一切なく、いつでも退会自由です。年会費5,000円のみです。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "お布施はいつ、どのように渡せばよいですか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "当日にお渡しいただくか、後日のお振込みでも結構です。分割払いにもご対応しております。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "生活が苦しいのですが…",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "ご事情をお聞かせください。金額のご相談や分割払いにも対応しております。お布施の金額で供養の質が変わることはありません。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "なぜ僧侶3名体制なのですか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "お葬式は一生に一度きりの大切な儀式です。もし読経の途中で僧侶が体調を崩したら、そのお葬式はやり直しがききません。大切な方を確実にお見送りできるよう、永万寺では3名体制でお勤めを行っています。丁寧さだけでなく「確実にお葬式を最後までやり遂げる」ための備えでもあります。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "葬儀社はどこでも大丈夫ですか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "はい、どの葬儀社をお使いでも対応いたします。葬儀場、ご自宅、火葬場どこへでもお伺いします。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "対応エリアを教えてください",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "北九州市全域（小倉北区・小倉南区・八幡東区・八幡西区・門司区・若松区・戸畑区）、中間市、直方市、宗像市、福津市、遠賀郡、鞍手郡、京都郡に対応しています。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "浄土真宗以外の宗派ですが依頼できますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "お勤め自体は浄土真宗本願寺派の作法で行います。宗派にこだわりがなければ、どなたでもご利用いただけます。"
+        }
+      }
+    ]
   }
   </script>
 </head>
