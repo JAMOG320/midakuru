@@ -76,4 +76,24 @@ document.addEventListener('DOMContentLoaded', () => {
     );
     reveals.forEach(el => revealObserver.observe(el));
   }
+
+  // --- GA4 Conversion Events ---
+  // All tel: links → phone_click
+  document.querySelectorAll('a[href^="tel:"]').forEach(link => {
+    link.addEventListener('click', () => {
+      if (typeof gtag === 'function') {
+        gtag('event', 'phone_click');
+      }
+    });
+  });
+
+  // Sticky CTA phone button → sticky_cta_click
+  const stickyBtn = document.querySelector('.sticky-cta a[href^="tel:"]');
+  if (stickyBtn) {
+    stickyBtn.addEventListener('click', () => {
+      if (typeof gtag === 'function') {
+        gtag('event', 'sticky_cta_click');
+      }
+    });
+  }
 });
