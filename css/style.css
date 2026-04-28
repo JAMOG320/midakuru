@@ -410,8 +410,6 @@ ul, ol { list-style: none; }
   border: 1px solid rgba(180, 138, 60, 0.68);
   border-radius: 8px;
   background:
-    linear-gradient(90deg, rgba(255, 253, 247, 0.2), rgba(255, 253, 247, 0.5)),
-    url('../images/banner-temple-art.png') center / cover no-repeat,
     linear-gradient(135deg, #fffdf7 0%, #f8f1e5 56%, #efe0c8 100%);
   box-shadow: 0 12px 26px rgba(44, 40, 32, 0.18);
   color: var(--color-text);
@@ -450,22 +448,23 @@ ul, ol { list-style: none; }
   grid-template-columns: 1fr;
   margin-top: 34px;
   min-height: 280px;
-  background:
-    linear-gradient(90deg, rgba(255, 253, 247, 0.82) 0 52%, rgba(255, 253, 247, 0.2) 72%),
-    url('../images/banner-temple-art-content.png') center / cover no-repeat,
-    linear-gradient(135deg, #fffdf7 0%, #f8f1e5 56%, #efe0c8 100%);
 }
 
 .motion-banner__art {
   position: relative;
-  min-height: 156px;
+  min-height: 150px;
   border-radius: 6px;
-  background: transparent;
+  background:
+    linear-gradient(180deg, rgba(255, 253, 247, 0), rgba(255, 253, 247, 0.08)),
+    url('../images/banner-temple-art.png') left bottom / cover no-repeat;
 }
 
 .motion-banner__art--wide {
   min-height: 210px;
   order: -1;
+  background:
+    linear-gradient(90deg, rgba(255, 253, 247, 0.12), rgba(255, 253, 247, 0)),
+    url('../images/banner-temple-art-content.png') 76% center / cover no-repeat;
 }
 
 .motion-banner__copy {
@@ -474,7 +473,7 @@ ul, ol { list-style: none; }
   text-align: center;
   padding: 16px;
   border-radius: 8px;
-  background: rgba(255, 253, 247, 0.28);
+  background: rgba(255, 253, 247, 0.74);
   backdrop-filter: blur(1px);
   -webkit-backdrop-filter: blur(1px);
 }
@@ -1708,7 +1707,7 @@ ul, ol { list-style: none; }
 }
 
 .sticky-cta__message::before {
-  content: '寺';
+  content: '';
   position: absolute;
   left: 14px;
   top: 50%;
@@ -1719,9 +1718,9 @@ ul, ol { list-style: none; }
   place-items: center;
   border: 1px solid rgba(255, 255, 255, 0.58);
   border-radius: 50%;
-  color: #fff;
-  font-family: var(--font-serif);
-  font-size: 16px;
+  background:
+    rgba(255, 253, 247, 0.96) url('../images/trust-icons-set.png') 0% 50% / 400% 100% no-repeat;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.14);
 }
 
 .sticky-cta__message span {
@@ -1892,6 +1891,12 @@ ul, ol { list-style: none; }
 
   /* Motion banners */
   .motion-banner-section { padding: 34px 0; }
+  .motion-banner {
+    background:
+      linear-gradient(90deg, rgba(255, 253, 247, 0.2), rgba(255, 253, 247, 0.5)),
+      url('../images/banner-temple-art.png') center / cover no-repeat,
+      linear-gradient(135deg, #fffdf7 0%, #f8f1e5 56%, #efe0c8 100%);
+  }
   .motion-banner--hero {
     grid-template-columns: 170px minmax(0, 1fr) 352px;
     min-height: 210px;
@@ -1902,6 +1907,10 @@ ul, ol { list-style: none; }
     grid-template-columns: 58% 42%;
     align-items: stretch;
     min-height: 286px;
+    background:
+      linear-gradient(90deg, rgba(255, 253, 247, 0.86) 0 50%, rgba(255, 253, 247, 0.2) 74%),
+      url('../images/banner-temple-art-content.png') center / cover no-repeat,
+      linear-gradient(135deg, #fffdf7 0%, #f8f1e5 56%, #efe0c8 100%);
   }
   .motion-banner--content .motion-banner__copy {
     align-self: center;
@@ -1919,6 +1928,7 @@ ul, ol { list-style: none; }
     order: initial;
     min-height: 286px;
     border-radius: 0;
+    background: transparent;
   }
   .motion-banner__copy {
     align-self: center;
