@@ -271,7 +271,7 @@ ul, ol { list-style: none; }
   font-size: 30px;
   font-weight: 700;
   line-height: 1;
-  letter-spacing: -0.02em;
+  letter-spacing: 0;
 }
 
 .hero__badge-unit {
@@ -285,6 +285,31 @@ ul, ol { list-style: none; }
   flex-direction: column;
   gap: 10px;
   margin-top: 4px;
+}
+
+.hero__link-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+}
+
+.hero__link-row a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  border: 1px solid rgba(184, 150, 62, 0.42);
+  border-radius: 8px;
+  color: #e8e4df;
+  background: rgba(255, 255, 255, 0.04);
+  font-size: 13px;
+  font-weight: 600;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.hero__link-row a:hover {
+  border-color: var(--color-gold);
+  background: rgba(184, 150, 62, 0.12);
 }
 
 .btn-phone {
@@ -369,6 +394,389 @@ ul, ol { list-style: none; }
 }
 
 /* =============================================
+   Motion Banners
+   ============================================= */
+.motion-banner-section {
+  padding: 30px 0;
+  background: var(--color-bg);
+}
+
+.motion-banner {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: grid;
+  gap: 18px;
+  border: 1px solid rgba(180, 138, 60, 0.68);
+  border-radius: 8px;
+  background:
+    linear-gradient(90deg, rgba(255, 253, 247, 0.2), rgba(255, 253, 247, 0.5)),
+    url('../images/banner-temple-art.png') center / cover no-repeat,
+    linear-gradient(135deg, #fffdf7 0%, #f8f1e5 56%, #efe0c8 100%);
+  box-shadow: 0 12px 26px rgba(44, 40, 32, 0.18);
+  color: var(--color-text);
+  animation: bannerImageDrift 18s ease-in-out infinite;
+}
+
+.motion-banner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    radial-gradient(circle at 22% 30%, rgba(180, 138, 60, 0.08) 0 2px, transparent 3px),
+    linear-gradient(90deg, rgba(184, 150, 62, 0.05) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(184, 150, 62, 0.04) 1px, transparent 1px);
+  background-size: 26px 26px, 34px 34px, 34px 34px;
+  mask-image: linear-gradient(120deg, rgba(0, 0, 0, 0.42), transparent 76%);
+}
+
+.motion-banner::after {
+  content: none;
+  position: absolute;
+  inset: 6px;
+  border: 1px solid rgba(184, 150, 62, 0.24);
+  border-radius: 5px;
+  pointer-events: none;
+}
+
+.motion-banner--hero {
+  grid-template-columns: 1fr;
+  align-items: center;
+  padding: 24px 18px;
+}
+
+.motion-banner--content {
+  grid-template-columns: 1fr;
+  margin-top: 34px;
+  min-height: 280px;
+  background:
+    linear-gradient(90deg, rgba(255, 253, 247, 0.82) 0 52%, rgba(255, 253, 247, 0.2) 72%),
+    url('../images/banner-temple-art-content.png') center / cover no-repeat,
+    linear-gradient(135deg, #fffdf7 0%, #f8f1e5 56%, #efe0c8 100%);
+}
+
+.motion-banner__art {
+  position: relative;
+  min-height: 156px;
+  border-radius: 6px;
+  background: transparent;
+}
+
+.motion-banner__art--wide {
+  min-height: 210px;
+  order: -1;
+}
+
+.motion-banner__copy {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 16px;
+  border-radius: 8px;
+  background: rgba(255, 253, 247, 0.28);
+  backdrop-filter: blur(1px);
+  -webkit-backdrop-filter: blur(1px);
+}
+
+.motion-banner__eyebrow {
+  margin-bottom: 6px;
+  color: var(--color-gold);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.motion-banner__headline {
+  font-family: var(--font-serif);
+  font-size: 24px;
+  line-height: 1.45;
+  color: #123c2b;
+  margin-bottom: 10px;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.72);
+}
+
+.motion-banner__text,
+.motion-banner__feature {
+  color: var(--color-accent);
+  font-size: 13px;
+  line-height: 1.9;
+}
+
+.motion-banner__feature {
+  color: var(--color-gold);
+  font-weight: 700;
+}
+
+.motion-banner__rotator {
+  position: relative;
+  width: min(100%, 300px);
+  height: 32px;
+  margin: 16px auto 0;
+  color: var(--color-dark-soft);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.motion-banner__rotator span {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(184, 150, 62, 0.36);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.66);
+  opacity: 0;
+  animation: bannerPhrase 9s ease-in-out infinite;
+}
+
+.motion-banner__rotator span:nth-child(2) {
+  animation-delay: 3s;
+}
+
+.motion-banner__rotator span:nth-child(3) {
+  animation-delay: 6s;
+}
+
+.motion-banner__phone-panel {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+  padding: 16px 18px;
+  border-radius: 8px;
+  border: 2px solid rgba(180, 138, 60, 0.7);
+  background: rgba(255, 253, 247, 0.84);
+  box-shadow: 0 8px 20px rgba(44, 40, 32, 0.13);
+}
+
+.motion-banner__phone-label,
+.motion-banner__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 28px;
+  border-radius: 6px;
+  background: linear-gradient(180deg, #164832, #0d3324);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  box-shadow: 0 8px 18px rgba(44, 40, 32, 0.18);
+}
+
+.motion-banner__phone-number {
+  font-family: Georgia, 'Times New Roman', serif;
+  color: #123c2b;
+  font-size: 30px;
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+}
+
+.motion-banner__phone-number::before {
+  content: '☎';
+  display: inline-grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  margin-right: 10px;
+  border-radius: 50%;
+  background: linear-gradient(180deg, #164832, #0d3324);
+  color: #fff;
+  font-family: var(--font-sans);
+  font-size: 20px;
+  vertical-align: 3px;
+}
+
+.motion-banner__hours {
+  padding: 4px 14px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #fff8e8, #ead9ba);
+  color: var(--color-accent);
+  font-size: 11px;
+  border: 1px solid rgba(180, 138, 60, 0.22);
+}
+
+.motion-banner__actions {
+  display: grid;
+  gap: 12px;
+  justify-items: center;
+  margin-top: 20px;
+}
+
+.motion-banner__inline-number {
+  font-family: Georgia, 'Times New Roman', serif;
+  color: #123c2b;
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.motion-banner__cloud {
+  position: absolute;
+  width: 96px;
+  height: 28px;
+  border-radius: 999px;
+  border: 1px solid rgba(184, 150, 62, 0.18);
+  opacity: 0.52;
+  animation: bannerFloat 10s ease-in-out infinite;
+  display: none;
+}
+
+.motion-banner__cloud::before,
+.motion-banner__cloud::after {
+  content: '';
+  position: absolute;
+  top: -11px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid rgba(184, 150, 62, 0.18);
+  background: rgba(255, 250, 241, 0.5);
+}
+
+.motion-banner__cloud::before {
+  left: 18px;
+}
+
+.motion-banner__cloud::after {
+  right: 18px;
+}
+
+.motion-banner__cloud--one {
+  top: 24px;
+  left: 18px;
+}
+
+.motion-banner__cloud--two {
+  right: 18px;
+  bottom: 36px;
+  transform: scale(0.76);
+  animation-delay: 2s;
+}
+
+.temple-illust {
+  position: absolute;
+  left: 50%;
+  bottom: 24px;
+  width: 152px;
+  height: 112px;
+  transform: translateX(-50%);
+  animation: templeBreath 7s ease-in-out infinite;
+  display: none;
+}
+
+.temple-illust--large {
+  width: 238px;
+  height: 176px;
+  bottom: 34px;
+}
+
+.temple-illust__roof {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 50px;
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.2), transparent 18% 82%, rgba(0, 0, 0, 0.12)),
+    linear-gradient(135deg, #3f5430, #526b3f);
+  clip-path: polygon(50% 0, 100% 64%, 84% 64%, 84% 82%, 16% 82%, 16% 64%, 0 64%);
+  box-shadow: 0 6px 0 rgba(12, 47, 34, 0.16);
+}
+
+.temple-illust--large .temple-illust__roof {
+  height: 76px;
+}
+
+.temple-illust__body {
+  position: absolute;
+  left: 22px;
+  right: 22px;
+  top: 50px;
+  bottom: 12px;
+  border: 1px solid rgba(107, 92, 76, 0.36);
+  background:
+    linear-gradient(90deg, transparent 47%, rgba(107, 92, 76, 0.24) 48% 52%, transparent 53%),
+    linear-gradient(#d9c5a0, #a99672);
+}
+
+.temple-illust--large .temple-illust__body {
+  left: 42px;
+  right: 42px;
+  top: 76px;
+  bottom: 22px;
+}
+
+.temple-illust__base {
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 0;
+  height: 14px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #8c806c, #c5b28e, #8c806c);
+}
+
+.temple-illust--large .temple-illust__base {
+  height: 20px;
+}
+
+.lotus-mark {
+  position: absolute;
+  left: 16px;
+  bottom: 12px;
+  color: rgba(184, 150, 62, 0.28);
+  font-family: var(--font-serif);
+  font-size: 42px;
+  font-weight: 700;
+  animation: lotusFade 8s ease-in-out infinite;
+  display: none;
+}
+
+.lotus-mark--large {
+  left: 42px;
+  bottom: 30px;
+  font-size: 72px;
+}
+
+@keyframes bannerPhrase {
+  0%, 8% {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  14%, 28% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  36%, 100% {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes bannerFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes templeBreath {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(-4px); }
+}
+
+@keyframes lotusFade {
+  0%, 100% { opacity: 0.22; }
+  50% { opacity: 0.42; }
+}
+
+@keyframes bannerImageDrift {
+  0%, 100% { background-position: center center, center center, center center; }
+  50% { background-position: center center, 48% 50%, center center; }
+}
+
+/* =============================================
    3. Trust Bar
    ============================================= */
 .trust-bar {
@@ -385,21 +793,45 @@ ul, ol { list-style: none; }
 
 .trust-bar__item {
   text-align: center;
-  padding: 20px 10px;
-  background: var(--color-card);
-  border-radius: 10px;
-  border: 1px solid var(--color-border);
+  padding: 18px 10px 20px;
+  background:
+    linear-gradient(180deg, rgba(255, 253, 247, 0.96), rgba(248, 246, 243, 0.96));
+  border-radius: 8px;
+  border: 1px solid rgba(184, 150, 62, 0.24);
   box-shadow: var(--shadow-sm);
-  transition: box-shadow 0.2s;
+  transition: box-shadow 0.2s, transform 0.2s;
 }
 
 .trust-bar__item:hover {
   box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
 }
 
 .trust-bar__icon {
-  font-size: 32px;
-  margin-bottom: 8px;
+  width: 74px;
+  height: 74px;
+  margin: 0 auto 10px;
+  border-radius: 50%;
+  background-image: url('../images/trust-icons-set.png');
+  background-repeat: no-repeat;
+  background-size: 400% 100%;
+  filter: drop-shadow(0 4px 8px rgba(44, 40, 32, 0.1));
+}
+
+.trust-bar__icon--temple {
+  background-position: 0% 50%;
+}
+
+.trust-bar__icon--candle {
+  background-position: 33.333% 50%;
+}
+
+.trust-bar__icon--beads {
+  background-position: 66.666% 50%;
+}
+
+.trust-bar__icon--hearse {
+  background-position: 100% 50%;
 }
 
 .trust-bar__title {
@@ -504,6 +936,18 @@ ul, ol { list-style: none; }
   line-height: 1.9;
 }
 
+.reason-card__emphasis {
+  margin-top: 14px;
+  padding: 12px 14px;
+  border: 1px solid rgba(184, 150, 62, 0.36);
+  border-radius: 8px;
+  background: var(--color-gold-light);
+  color: var(--color-dark-soft);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.7;
+}
+
 /* =============================================
    6. Pricing (料金表)
    ============================================= */
@@ -564,6 +1008,25 @@ ul, ol { list-style: none; }
 
 .price-table tr:last-child td { border-bottom: none; }
 
+.price-table__highlight td {
+  background: linear-gradient(90deg, rgba(245, 238, 220, 0.92), rgba(255, 255, 255, 0.96));
+}
+
+.price-table__highlight td:first-child {
+  border-left: 4px solid var(--color-gold);
+}
+
+.price-table__badge {
+  display: inline-flex;
+  margin-top: 8px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--color-dark-soft);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+}
+
 /* Special offer box */
 .offer-box {
   background: linear-gradient(135deg, var(--color-gold-light), #ece3cc);
@@ -623,7 +1086,83 @@ ul, ol { list-style: none; }
 }
 
 /* =============================================
-   7. Monto (門徒登録)
+   7. Temple (運営寺院)
+   ============================================= */
+.temple-block {
+  display: grid;
+  gap: 24px;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  background:
+    radial-gradient(ellipse at 12% 18%, rgba(184, 150, 62, 0.12), transparent 44%),
+    linear-gradient(135deg, #fff, var(--color-bg));
+  box-shadow: var(--shadow-md);
+}
+
+.temple-block__content {
+  padding: 28px 24px 0;
+}
+
+.temple-block__eyebrow {
+  color: var(--color-gold);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  margin-bottom: 8px;
+}
+
+.temple-block__title {
+  font-family: var(--font-serif);
+  font-size: 20px;
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.temple-block__text {
+  color: var(--color-accent);
+  font-size: 13px;
+  line-height: 2;
+  margin-bottom: 12px;
+}
+
+.temple-block__actions {
+  display: grid;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.temple-block__actions a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  border-radius: 8px;
+  border: 1px solid var(--color-gold);
+  color: var(--color-text);
+  background: var(--color-gold-light);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.temple-block__actions a:first-child {
+  background: var(--color-dark-soft);
+  color: #fff;
+  border-color: var(--color-dark-soft);
+}
+
+.temple-block__photo {
+  min-height: 220px;
+}
+
+.temple-block__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* =============================================
+   8. Monto (門徒登録)
    ============================================= */
 .monto__catch {
   font-family: var(--font-serif);
@@ -692,51 +1231,17 @@ ul, ol { list-style: none; }
   background: linear-gradient(135deg, var(--color-gold-light), #ece3cc);
 }
 
-/* Simulation */
-.simulation {
+.monto-message {
   background: var(--color-card);
   border: 1px solid var(--color-border);
   border-radius: 12px;
   padding: 24px;
   margin-bottom: 28px;
   box-shadow: var(--shadow-sm);
-}
-
-.simulation__title {
-  font-family: var(--font-serif);
-  font-size: 15px;
-  font-weight: 700;
-  margin-bottom: 14px;
-  color: var(--color-text);
-}
-
-.simulation__row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 0;
   font-size: 13px;
-  font-family: var(--font-sans);
-  border-bottom: 1px solid var(--color-border);
-}
-
-.simulation__row:last-of-type { border-bottom: none; }
-
-.simulation__row--highlight {
-  color: var(--color-gold);
-  font-weight: 700;
-  font-size: 14px;
-}
-
-.simulation__result {
   text-align: center;
-  margin-top: 16px;
-  padding-top: 16px;
-  border-top: 2px solid var(--color-gold-light);
-  font-family: var(--font-serif);
-  font-size: 16px;
-  font-weight: 700;
-  color: var(--color-emergency);
+  color: var(--color-accent);
+  line-height: 1.9;
 }
 
 /* Monto info list */
@@ -760,7 +1265,7 @@ ul, ol { list-style: none; }
 }
 
 /* =============================================
-   8. Competitor Comparison (他社比較)
+   9. Service Difference
    ============================================= */
 .competitor-table-wrap {
   overflow-x: auto;
@@ -770,7 +1275,7 @@ ul, ol { list-style: none; }
 
 .competitor-table {
   width: 100%;
-  min-width: 540px;
+  min-width: 480px;
   border-collapse: collapse;
   font-size: 12px;
   background: var(--color-card);
@@ -808,6 +1313,7 @@ ul, ol { list-style: none; }
   text-align: left;
   white-space: nowrap;
   font-size: 11px;
+  width: 28%;
 }
 
 .competitor-table .col-midakuru {
@@ -829,7 +1335,7 @@ ul, ol { list-style: none; }
 }
 
 /* =============================================
-   9. Flow (ご利用の流れ)
+   10. Flow (ご利用の流れ)
    ============================================= */
 .flow__timeline {
   position: relative;
@@ -890,7 +1396,7 @@ ul, ol { list-style: none; }
 }
 
 /* =============================================
-   10. FAQ
+   11. FAQ
    ============================================= */
 .faq__list {
   display: flex;
@@ -994,7 +1500,7 @@ ul, ol { list-style: none; }
 }
 
 /* =============================================
-   11. Area (対応エリア)
+   12. Area (対応エリア)
    ============================================= */
 .area__map {
   width: 100%;
@@ -1037,7 +1543,7 @@ ul, ol { list-style: none; }
 }
 
 /* =============================================
-   12. Profile (住職紹介)
+   13. Profile (住職紹介)
    ============================================= */
 .profile__wrap {
   display: flex;
@@ -1102,7 +1608,7 @@ ul, ol { list-style: none; }
 }
 
 /* =============================================
-   13. Final CTA
+   14. Final CTA
    ============================================= */
 .final-cta {
   text-align: center;
@@ -1163,7 +1669,7 @@ ul, ol { list-style: none; }
 }
 
 /* =============================================
-   14. Sticky CTA
+   15. Sticky CTA
    ============================================= */
 .sticky-cta {
   position: fixed;
@@ -1171,39 +1677,101 @@ ul, ol { list-style: none; }
   left: 0;
   width: 100%;
   z-index: 90;
-  background: rgba(26, 26, 26, 0.94);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  padding: 10px 16px;
+  display: grid;
+  grid-template-columns: 1.14fr 0.96fr 0.82fr;
+  min-height: 78px;
   transform: translateY(100%);
   transition: transform 0.3s ease;
-  border-top: 1px solid rgba(184, 150, 62, 0.2);
+  border-top: 1px solid rgba(184, 150, 62, 0.6);
+  box-shadow: 0 -10px 24px rgba(0, 0, 0, 0.16);
 }
 
 .sticky-cta.is-visible {
   transform: translateY(0);
 }
 
-.sticky-cta__inner {
-  display: flex;
-  gap: 8px;
-  max-width: 500px;
-  margin: 0 auto;
+.sticky-cta a {
+  text-decoration: none;
 }
 
-.sticky-cta .btn-phone {
-  flex: 1;
-  padding: 10px 16px;
-  flex-direction: row;
-  gap: 6px;
+.sticky-cta__message {
+  display: grid;
+  place-content: center;
+  gap: 2px;
+  padding: 8px 10px 8px 48px;
+  background:
+    radial-gradient(circle at 28px 50%, rgba(255, 255, 255, 0.12) 0 27px, transparent 28px),
+    linear-gradient(135deg, #123c2b, #0c2f22);
+  color: #fff;
+  text-align: center;
+  position: relative;
 }
 
-.sticky-cta .btn-phone__number {
+.sticky-cta__message::before {
+  content: '寺';
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  width: 38px;
+  height: 38px;
+  transform: translateY(-50%);
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.58);
+  border-radius: 50%;
+  color: #fff;
+  font-family: var(--font-serif);
   font-size: 16px;
 }
 
+.sticky-cta__message span {
+  font-family: var(--font-serif);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.sticky-cta__message small {
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 10px;
+}
+
+.sticky-cta__phone {
+  display: grid;
+  place-content: center;
+  gap: 1px;
+  padding: 8px;
+  background: linear-gradient(135deg, #b48a3c, #9a6f25);
+  color: #fff;
+  text-align: center;
+  font-weight: 700;
+  animation: ctaGlow 4.8s ease-in-out infinite;
+}
+
+.sticky-cta__phone span {
+  font-size: 13px;
+}
+
+.sticky-cta__phone strong {
+  font-size: 15px;
+  line-height: 1.25;
+  letter-spacing: 0.02em;
+}
+
+.sticky-cta__price {
+  display: grid;
+  place-content: center;
+  padding: 8px;
+  background: linear-gradient(180deg, #fffdf7, #f5eedc);
+  color: var(--color-text);
+  font-size: 14px;
+  font-weight: 700;
+  text-align: center;
+  border-left: 1px solid rgba(184, 150, 62, 0.35);
+}
+
 /* =============================================
-   15. Footer
+   16. Footer
    ============================================= */
 .footer {
   background: var(--color-dark);
@@ -1256,6 +1824,32 @@ ul, ol { list-style: none; }
   transform: translateY(0);
 }
 
+@media (max-width: 767px) {
+  body {
+    padding-bottom: 78px;
+  }
+}
+
+@keyframes ctaGlow {
+  0%, 100% {
+    filter: brightness(1);
+  }
+  50% {
+    filter: brightness(1.08);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
 /* =============================================
    PC Responsive (min-width: 768px)
    ============================================= */
@@ -1294,6 +1888,101 @@ ul, ol { list-style: none; }
   .hero__badge-price { font-size: 36px; }
   .hero__badge-label,
   .hero__badge-unit { font-size: 14px; }
+  .hero__link-row { grid-template-columns: repeat(2, 1fr); }
+
+  /* Motion banners */
+  .motion-banner-section { padding: 34px 0; }
+  .motion-banner--hero {
+    grid-template-columns: 170px minmax(0, 1fr) 352px;
+    min-height: 210px;
+    padding: 24px 34px 24px 0;
+    gap: 22px;
+  }
+  .motion-banner--content {
+    grid-template-columns: 58% 42%;
+    align-items: stretch;
+    min-height: 286px;
+  }
+  .motion-banner--content .motion-banner__copy {
+    align-self: center;
+    padding: 38px 36px 38px 42px;
+  }
+  .motion-banner__art {
+    min-height: 180px;
+    align-self: stretch;
+  }
+  .motion-banner--hero .motion-banner__art {
+    min-height: 160px;
+    background: transparent;
+  }
+  .motion-banner__art--wide {
+    order: initial;
+    min-height: 286px;
+    border-radius: 0;
+  }
+  .motion-banner__copy {
+    align-self: center;
+  }
+  .motion-banner__headline {
+    font-size: 34px;
+  }
+  .motion-banner--content .motion-banner__headline {
+    font-size: 32px;
+  }
+  .motion-banner__text,
+  .motion-banner__feature {
+    font-size: 16px;
+  }
+  .motion-banner__phone-number {
+    font-size: 35px;
+  }
+  .motion-banner__phone-label {
+    width: 100%;
+  }
+  .motion-banner__hours {
+    font-size: 14px;
+    padding: 5px 28px;
+  }
+  .motion-banner__actions {
+    grid-template-columns: auto auto;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+  }
+  .motion-banner__actions::before {
+    content: '';
+    order: 2;
+    width: 1px;
+    height: 46px;
+    background: rgba(107, 92, 76, 0.36);
+  }
+  .motion-banner__button {
+    order: 1;
+    min-width: 280px;
+    min-height: 62px;
+    font-size: 20px;
+  }
+  .motion-banner__inline-number {
+    order: 3;
+    font-size: 38px;
+  }
+  .motion-banner--hero .temple-illust {
+    left: 54%;
+    bottom: 12px;
+  }
+  .motion-banner--hero .lotus-mark {
+    top: 20px;
+    bottom: auto;
+    left: 22px;
+    width: 54px;
+    height: 54px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    border: 1px solid rgba(180, 138, 60, 0.32);
+    background: rgba(255, 250, 241, 0.48);
+    font-size: 24px;
+  }
 
   /* Trust bar */
   .trust-bar__grid { grid-template-columns: repeat(4, 1fr); gap: 16px; }
@@ -1303,6 +1992,24 @@ ul, ol { list-style: none; }
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
+  }
+
+  /* Temple block */
+  .temple-block {
+    grid-template-columns: 1.12fr 0.88fr;
+    align-items: stretch;
+  }
+  .temple-block__content {
+    padding: 42px 44px;
+  }
+  .temple-block__title {
+    font-size: 25px;
+  }
+  .temple-block__actions {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .temple-block__photo {
+    min-height: 380px;
   }
 
   /* Profile side by side */
