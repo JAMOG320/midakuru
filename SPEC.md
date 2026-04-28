@@ -100,7 +100,7 @@ midakuru/
 **SP/PC対応：**
 - SP: 1カラム、電話番号はタップ発信可
 - PC: 左テキスト・右に蓮の画像（またはお寺の写真）の2カラム
-- ※LINE関連は後日追加予定。初期リリースは電話CTAのみ。
+- CTAは電話のみ（LINE対応なし）
 
 ---
 
@@ -279,9 +279,9 @@ midakuru/
 
 ### 4-11. 住職紹介
 
-- 写真（プレースホルダー。後で差し替え）
+- 写真（profile.jpg 設置済み）
 - 名前・肩書（光應山 永万寺 住職 ／ 浄土真宗本願寺派）
-- 紹介文（2〜3行。人柄が伝わる温かいテキスト）
+- 紹介文（設置済み）
 
 ---
 
@@ -291,7 +291,6 @@ midakuru/
 - サブ：「お急ぎの方も、事前のご相談も。受付時間 6:00〜23:00。」
 - 電話ボタン（赤、大きく）
 - 運営情報テキスト
-- ※LINEボタンは後日追加予定
 
 ---
 
@@ -300,7 +299,6 @@ midakuru/
 - 画面下部に常時固定表示
 - 半透明ダーク背景（backdrop-filter: blur）
 - **電話ボタンのみ（赤系）** — 「📞 093-931-0040 に電話する」
-- ※LINEボタンは後日追加予定
 - SPのみ表示（PCではヘッダーに電話番号表示で代替）
 - スクロール開始後に表示（ヒーローが画面外に出たら）
 
@@ -328,7 +326,7 @@ midakuru/
   
   /* CTA */
   --color-emergency: #8b2020;    /* 電話ボタン・緊急 */
-  --color-line: #06C755;         /* LINE緑 */
+  /* LINE対応なし — 電話CTAのみ */
   
   /* ダーク */
   --color-dark: #1a1a1a;         /* ヒーロー・CTA・フッター背景 */
@@ -399,18 +397,13 @@ midakuru/
 
 ## 7. Google広告との連携
 
-### コンバージョン計測の設置箇所
-1. **電話タップ**（tel:リンクのクリックイベント）
-2. **（後日追加）LINEボタンクリック**
-3. **（オプション）フォーム送信**（問い合わせフォームを追加する場合）
+### コンバージョン計測の設置箇所（実装済み）
+1. **phone_click** — インライン電話リンクのタップ
+2. **sticky_cta_click** — スティッキーCTA電話ボタンのタップ
 
-### GTMの設置
-```html
-<!-- head内 -->
-<script>(function(w,d,s,l,i){...})(window,document,'script','dataLayer','GTM-XXXXXXX');</script>
-<!-- body直後 -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX"...></iframe></noscript>
-```
+### GTM/GA4（設置済み）
+- GTM: `GTM-PJLS8CJ9`（全ページ head + noscript）
+- GA4: `G-Y7WQJVZDSZ`（全ページ）
 
 ### 広告ランディングURL設計
 - 葬儀系広告 → `midakuru.jp/#price-funeral`（料金セクションへアンカー）
@@ -433,11 +426,11 @@ midakuru/
 - モバイルファースト（375px基準、PC 1200px max-width）
 - Noto Serif JP + Noto Sans JPをGoogle Fontsから読み込み
 - ページ速度重視（画像は遅延読み込み、CSS/JSは最小限）
-- スティッキーCTA（スクロール後に画面下部固定で電話＋LINEボタン表示）
+- スティッキーCTA（スクロール後に画面下部固定で電話ボタン表示）
 - FAQはアコーディオンUI（CSS + JSで実装）
 - スムーススクロール実装
 - AOS.js等でスクロールアニメーション（控えめに）
-- 画像はプレースホルダーでOK（後で差し替え）
+- 画像は差し替え済み（hero-bg.jpg, profile.jpg, ogp.jpg）
 
 カラーは仕様書のCSS変数を使用。
 セクション順序・テキスト内容は仕様書に記載の通り。
@@ -447,12 +440,15 @@ midakuru/
 
 ## 9. 公開前チェックリスト
 
-- [ ] tel:リンクがSPで正しく発信できるか
-- [ ] Googleマップが正しく表示されるか
-- [ ] 特定商取引法に基づく表記ページの内容確認
-- [ ] OGP画像の表示確認（SNS共有時）
+- [x] tel:リンクがSPで正しく発信できるか
+- [x] Googleマップが正しく表示されるか
+- [x] 特定商取引法に基づく表記ページの内容確認
+- [x] OGP画像の表示確認（ogp.jpg 1200x630 作成済み）
 - [ ] Lighthouse スコア 90+
-- [ ] GTM/GA4の設置確認
-- [ ] コンバージョントラッキングのテスト（電話タップ・LINEクリック）
-- [ ] Google広告アカウントとの接続確認
+- [x] GTM(GTM-PJLS8CJ9)/GA4(G-Y7WQJVZDSZ)の設置確認
+- [x] コンバージョントラッキング（phone_click / sticky_cta_click）
+- [ ] Google広告アカウントとの接続・最適化
 - [ ] Googleビジネスプロフィールに「ミダクル」のウェブサイトURLを追加
+- [x] canonical / og:url 設定
+- [x] robots.txt / sitemap.xml 作成
+- [x] favicon.svg 作成

@@ -89,6 +89,11 @@ ul, ol { list-style: none; }
 .gold { color: var(--color-gold); }
 .red { color: var(--color-emergency); }
 
+/* --- Scroll offset for fixed header --- */
+[id] {
+  scroll-margin-top: 64px;
+}
+
 /* --- Section spacing --- */
 .section {
   padding: 56px 0;

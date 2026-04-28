@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
       faqItems.forEach(other => {
         if (other !== item) {
           other.classList.remove('is-open');
+          other.querySelector('.faq__question').setAttribute('aria-expanded', 'false');
           other.querySelector('.faq__answer').style.maxHeight = null;
         }
       });
@@ -25,9 +26,11 @@ document.addEventListener('DOMContentLoaded', () => {
       // Toggle current
       if (isOpen) {
         item.classList.remove('is-open');
+        question.setAttribute('aria-expanded', 'false');
         answer.style.maxHeight = null;
       } else {
         item.classList.add('is-open');
+        question.setAttribute('aria-expanded', 'true');
         answer.style.maxHeight = answer.scrollHeight + 'px';
       }
     });
@@ -78,8 +81,11 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // --- GA4 Conversion Events ---
-  // All tel: links → phone_click
+  const stickyBtn = document.querySelector('.sticky-cta a[href^="tel:"]');
+
+  // All tel: links → phone_click (except sticky CTA)
   document.querySelectorAll('a[href^="tel:"]').forEach(link => {
+    if (link === stickyBtn) return;
     link.addEventListener('click', () => {
       if (typeof gtag === 'function') {
         gtag('event', 'phone_click');
@@ -87,8 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Sticky CTA phone button → sticky_cta_click
-  const stickyBtn = document.querySelector('.sticky-cta a[href^="tel:"]');
+  // Sticky CTA phone button → sticky_cta_click only
   if (stickyBtn) {
     stickyBtn.addEventListener('click', () => {
       if (typeof gtag === 'function') {

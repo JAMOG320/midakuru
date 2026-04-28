@@ -1,0 +1,11 @@
+# ミダクル
+- LP: midakuru.jp（Netlify / 静的HTML）
+- Google Ads キャンペーン: 葬儀_緊急系 — **広告最適化が最優先事項**
+- GTM: GTM-PJLS8CJ9 / GA4: G-Y7WQJVZDSZ
+- コンバージョン: phone_click, sticky_cta_click
+- エリア: 北九州市全域 + 周辺6市
+- Schema.org 3種 (LocalBusiness, Service, FAQPage)
+- canonical, og:url, robots.txt, sitemap.xml 設定済み
+- CTAは電話のみ（LINE対応なし）
+- 画像は現状で確定（差し替え不要）
+- Serenaを使い、ファイル全体読み込みを避けること
